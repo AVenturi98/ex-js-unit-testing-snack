@@ -41,6 +41,8 @@ describe('SLUG', () => {
         expect(() => createSlug('')).toThrow();
         expect(() => createSlug(2)).toThrow();
     })
+
+
 })
 
 describe('ARRAY', () => {
@@ -103,10 +105,12 @@ describe('Aggiungere - Rimuovere un post', () => {
     // ADD
     test("Dopo aver aggiunto un post con la funzione 'addPost', l'array posts deve contenere un elemento in più.", () => {
         expect(addPost(posts, { id: 7, title: 'Biscotti con Uvetta', slug: 'biscotti-con-uvetta' }));
+        expect(posts).toHaveLength(7)
     })
 
     // REMOVE
     test("Dopo aver rimosso un post con la funzione 'removePost', l'array posts deve contenere un elemento in meno.", () => {
         expect(removePost(posts, 7));
+        expect(posts.find(p => p.id === 7)).toBeUndefined()
     })
 })
