@@ -23,8 +23,18 @@ function average(arr) {
     return sum / arr.length
 }
 
+//  SNACK 5
+function isPalindrome(word) {
+    const revert = word.split('').reverse().join('').toLowerCase();
+
+    if (revert === word.toLowerCase())
+        return revert
+    else if (word !== String || revert !== word.toLowerCase()) throw new Error('Non compatibile')
+}
+
 module.exports = {
     getInitials,
     createSlug,
-    average
+    average,
+    isPalindrome
 }
