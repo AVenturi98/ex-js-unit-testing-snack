@@ -64,11 +64,17 @@ function findPostById(posts, id) {
 
 }
 
+// SNACK 8
+const addPost = (posts, newPost) => posts.push(newPost)
+
+const removePost = (posts, id) => posts.filter(p => p.id !== id)
 
 module.exports = {
     getInitials,
     createSlug,
     average,
     isPalindrome,
-    findPostById
+    findPostById,
+    addPost,
+    removePost
 }
