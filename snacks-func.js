@@ -6,8 +6,20 @@ function getInitials(name) {
 
 // SNACK 2
 function createSlug(name) {
-    const slug = name.split(' ').join('-')
-    return slug.toLowerCase()
+
+    const slug = name.split(' ').join('-').toLowerCase();
+
+    if (slug === '') {
+        throw new Error('Non può essere vuoto')
+
+    } else if (typeof slug !== 'string') {
+        throw new Error('Deve essere una stringa')
+
+    } else if (!slug) {
+        throw new Error('Non valido')
+    }
+
+    return slug
 }
 
 // SNACK 3
