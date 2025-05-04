@@ -4,4 +4,10 @@ function getInitials(name) {
     return `${nome.at().toUpperCase()}${cognome.at().toUpperCase()}`
 }
 
-module.exports = { getInitials }
+
+// SNACK 2
+function createSlug(name) {
+    return name.toLowerCase()
+}
+
+module.exports = { getInitials, createSlug }
