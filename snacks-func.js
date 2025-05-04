@@ -65,7 +65,16 @@ function findPostById(posts, id) {
 }
 
 // SNACK 8
-const addPost = (posts, newPost) => posts.push(newPost)
+const addPost = (posts, newPost) => {
+
+    if (posts.find(p => p.id === newPost.id)) {
+        throw new Error('ID già esistente')
+    } else if (posts.find(p => p.slug === newPost.slug)) {
+        throw new Error('SLUG già esistente')
+    }
+
+    return posts.push(newPost)
+}
 
 const removePost = (posts, id) => posts.filter(p => p.id !== id)
 

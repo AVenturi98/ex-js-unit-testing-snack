@@ -42,7 +42,6 @@ describe('SLUG', () => {
         expect(() => createSlug(2)).toThrow();
     })
 
-
 })
 
 describe('ARRAY', () => {
@@ -105,7 +104,9 @@ describe('Aggiungere - Rimuovere un post', () => {
     // ADD
     test("Dopo aver aggiunto un post con la funzione 'addPost', l'array posts deve contenere un elemento in più.", () => {
         expect(addPost(posts, { id: 7, title: 'Biscotti con Uvetta', slug: 'biscotti-con-uvetta' }));
-        expect(posts).toHaveLength(7)
+        expect(posts).toHaveLength(7);
+        expect(() => addPost(posts, { id: 1, title: 'Gelato alla vanilla', slug: 'gelato-alla-vanilla' })).toThrow('ID già esistente'); // ID già esistente
+        expect(() => addPost(posts, { id: 8, title: 'Torta al cioccolato', slug: 'torta-al-cioccolato' })).toThrow('SLUG già esistente'); // Slug già esistente
     })
 
     // REMOVE
