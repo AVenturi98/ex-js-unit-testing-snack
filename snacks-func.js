@@ -44,9 +44,31 @@ function isPalindrome(word) {
     else if (word !== String || revert !== word.toLowerCase()) throw new Error('Non compatibile')
 }
 
+//  SNACK 7
+function findPostById(posts, id) {
+
+    const e = posts.find(p => p.id === id);
+
+    const slug = e.title.split(' ').join('-').toLowerCase();
+
+    if (
+        !isNaN(e.id) &&
+        typeof e.title === 'string' &&
+        typeof e.slug === 'string' && e.slug === slug) {
+
+        return e
+    }
+    else if (isNaN(e.id)) throw new Error('Il campo deve essere numerico')
+    else if (typeof e.title !== 'string') throw new Error('Il campo deve essere una stringa')
+    else if (typeof e.slug !== 'string' || e.slug !== slug) throw new Error('Il campo deve essere uguale al title')
+
+}
+
+
 module.exports = {
     getInitials,
     createSlug,
     average,
-    isPalindrome
+    isPalindrome,
+    findPostById
 }
