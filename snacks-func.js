@@ -6,7 +6,8 @@ function getInitials(name) {
 
 // SNACK 2
 function createSlug(name) {
-    return name.toLowerCase()
+    const slug = name.split(' ').join('-')
+    return slug.toLowerCase()
 }
 
 // SNACK 3
