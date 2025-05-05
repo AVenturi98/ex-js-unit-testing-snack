@@ -9,6 +9,20 @@ const {
 } = require('./snacks-func');
 
 
+let posts;
+
+beforeEach(() => {
+    posts = [
+        { id: 1, title: 'Torta al cioccolato', slug: 'torta-al-cioccolato' },
+        { id: 2, title: 'Tiramisù con caffè', slug: 'tiramisù-con-caffè' },
+        { id: 3, title: 'Torta alle mele', slug: 'torta-alle-mele' },
+        { id: 4, title: 4, slug: 'torta-alle-mele' },
+        { id: 5, title: 'Pappassini', slug: 5 },
+        { id: 6, title: 'Pappassini', slug: 'torta-alle-mele' }
+    ];
+})
+
+
 describe('STRINGHE', () => {
     // SNACK 1
     test("La funzione 'getInitials' restituisce le iniziali di un nome completo.", () => {
@@ -42,22 +56,14 @@ describe('SLUG', () => {
         expect(() => createSlug(2)).toThrow();
     })
 
+    // SNACK 10
+    test("Se viene passato un array di post come secondo argomento, la funzione createSlug incrementa di 1 se lo slug esiste già.", () => {
+        expect(createSlug('torta-al-cioccolato', posts)).toBe('torta-al-cioccolato-1'); // Incrementa di 1 
+    })
 })
 
 describe('ARRAY', () => {
 
-    let posts;
-
-    beforeEach(() => {
-        posts = [
-            { id: 1, title: 'Torta al cioccolato', slug: 'torta-al-cioccolato' },
-            { id: 2, title: 'Tiramisù con caffè', slug: 'tiramisù-con-caffè' },
-            { id: 3, title: 'Torta alle mele', slug: 'torta-alle-mele' },
-            { id: 4, title: 4, slug: 'torta-alle-mele' },
-            { id: 5, title: 'Pappassini', slug: 5 },
-            { id: 6, title: 'Pappassini', slug: 'torta-alle-mele' }
-        ];
-    })
 
     afterEach(() => {
         posts = [];
@@ -105,6 +111,8 @@ describe('Aggiungere - Rimuovere un post', () => {
     test("Dopo aver aggiunto un post con la funzione 'addPost', l'array posts deve contenere un elemento in più.", () => {
         expect(addPost(posts, { id: 7, title: 'Biscotti con Uvetta', slug: 'biscotti-con-uvetta' }));
         expect(posts).toHaveLength(7);
+
+        // SNACK 9
         expect(() => addPost(posts, { id: 1, title: 'Gelato alla vanilla', slug: 'gelato-alla-vanilla' })).toThrow('ID già esistente'); // ID già esistente
         expect(() => addPost(posts, { id: 8, title: 'Torta al cioccolato', slug: 'torta-al-cioccolato' })).toThrow('SLUG già esistente'); // Slug già esistente
     })

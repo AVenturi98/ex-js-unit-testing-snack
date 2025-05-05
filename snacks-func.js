@@ -5,9 +5,11 @@ function getInitials(name) {
 }
 
 // SNACK 2
-function createSlug(name) {
+function createSlug(name, posts) {
 
     const slug = name.split(' ').join('-').toLowerCase();
+
+    let count = 1;
 
     if (slug === '') {
         throw new Error('Non può essere vuoto')
@@ -19,7 +21,14 @@ function createSlug(name) {
         throw new Error('Non valido')
     }
 
-    return slug
+    if (posts && posts.find(p => p.slug === slug)) {
+
+        while (posts.find(p => p.slug === `${slug}-${count}`)) {
+            count++;
+        }
+        return `${slug}-${count}`
+
+    } else return slug
 }
 
 // SNACK 3
